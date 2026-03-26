@@ -11,8 +11,8 @@
 - **State Management**: Pinia (Preferred)
 - **HTTP Client**: Axios
 - **Package Manager**: **pnpm** (Latest version)
-- **Styling**: Scoped CSS / SCSS / TailwindCSS (if configured)
-- **Icons**: @ant-design/icons-vue
+- **Styling**: Tailwind CSS (优先) / Scoped CSS / SCSS
+- **Icons**: Heroicons (@heroicons/vue)
 
 # General Guidelines
 
@@ -44,7 +44,7 @@
 3. **Table Component**:
    - columns 定义应提取为独立常量或计算属性，确保类型 `ColumnsType<T>`。
    - 分页和加载状态必须由 `loading` 和 `pagination` 属性控制。
-4. **Icons**: 必须从 `@ant-design/icons-vue` 引入，作为组件使用 `<SearchOutlined />`。
+4. **Icons**: 必须使用 `heroicons`（从 `@heroicons/vue/24/outline` 等引入），作为组件使用 `<MagnifyingGlassIcon />`。禁止使用 `@ant-design/icons-vue`。
 5. **Message/Modal**: 使用 `message.success()`, `modal.confirm()` 等静态方法时，注意在 TS 中的类型推断。
 
 # Code Style & Formatting
