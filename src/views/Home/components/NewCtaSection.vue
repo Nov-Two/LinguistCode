@@ -57,10 +57,10 @@ withDefaults(defineProps<Props>(), {
             <a-button
               type="primary"
               size="large"
-              class="!h-[56px] !px-10 !rounded-lg !bg-white hover:!bg-gray-50 !border-none w-full sm:w-auto btn-shimmer"
+              class="!h-[56px] !px-10 !rounded-lg !bg-white hover:!bg-[var(--theme-bg-muted)] !border-none w-full sm:w-auto btn-shimmer"
             >
               <span
-                class="text-blue-600 text-base font-semibold"
+                class="text-[var(--theme-primary)] text-base font-semibold"
               >{{ primaryButtonText }}</span>
             </a-button>
             <a-button

@@ -18,11 +18,11 @@ const socialLinks: SocialLink[] = [
 <template>
   <div class="flex flex-col items-start max-w-[320px] gap-[23px]">
     <div class="flex flex-col items-start self-stretch">
-      <span class="text-2xl font-bold leading-[32px] text-[#198eee] font-['Space_Grotesk'] w-[153px] h-[32px] flex items-center">
+      <span class="text-2xl font-bold leading-[32px] text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] font-['Space_Grotesk'] w-[153px] h-[32px] flex items-center">
         LinguistCode
       </span>
     </div>
-    <p class="text-sm leading-[23px] text-[#595959] font-['Public_Sans'] w-[313px] h-[46px] flex items-center m-0">
+    <p class="text-sm leading-[23px] text-[var(--theme-text-secondary)] font-['Public_Sans'] w-[313px] h-[46px] flex items-center m-0">
       Redefining code education through the power of<br>
       simplified language and editorial design.
     </p>
@@ -32,7 +32,7 @@ const socialLinks: SocialLink[] = [
         :key="social.label"
         :href="social.href"
         :aria-label="social.label"
-        class="text-[#595959] transition-colors duration-200 hover:text-[#198eee]"
+        class="text-[var(--theme-text-secondary)] transition-colors duration-200 hover:text-[var(--theme-primary)] dark:hover:text-[var(--theme-blue-accent)]"
       >
         <component
           :is="social.icon"

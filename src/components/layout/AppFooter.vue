@@ -42,7 +42,7 @@ const footerColumns: FooterColumnData[] = [
 </script>
 
 <template>
-  <a-layout-footer class="!bg-white !border-t !border-[#f0f0f0] w-full flex justify-center">
+  <a-layout-footer class="!bg-bg-main !border-t !border-border w-full flex justify-center">
     <div class="w-full max-w-[1280px] px-[32px] py-[64px] flex flex-col gap-[64px]">
       <!-- Main Content -->
       <div class="flex flex-col md:flex-row justify-between items-start gap-[64px] md:gap-0">

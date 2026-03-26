@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, type Component } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { MagnifyingGlassIcon, BellIcon } from '@heroicons/vue/24/outline';
+import { MagnifyingGlassIcon, BellIcon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 import { ChevronDownIcon as ChevronDownIconMini } from '@heroicons/vue/20/solid';
+import { useTheme } from '@/composables/useTheme';
 
 /**
  * 导航链接类型定义
@@ -20,21 +21,30 @@ interface IconConfig {
   search: Component;
   dropdown: Component;
   notification: Component;
+  moon: Component;
+  sun: Component;
 }
 
 // 导航项配置
-const navLinks: NavLink[] = [{ label: 'Curriculum', href: '/curriculum' }, { label: 'Dashboard', href: '#' }, { label: 'Community', href: '#' }];
+const navLinks: NavLink[] = [
+  { label: 'Curriculum', href: '/curriculum' },
+  { label: 'Dashboard', href: '#' },
+  { label: 'Community', href: '#' },
+];
 
 // 图标配置（支持动态替换）
 const icons: IconConfig = {
   search: MagnifyingGlassIcon,
   dropdown: ChevronDownIconMini,
   notification: BellIcon,
+  moon: MoonIcon,
+  sun: SunIcon,
 };
 
 const searchValue = ref('');
 const router = useRouter();
 const route = useRoute();
+const { isDarkMode, toggleTheme } = useTheme();
 
 const navigateTo = (path?: string) => {
   if (path && path !== '#') {
@@ -101,7 +111,7 @@ const navigateTo = (path?: string) => {
           v-for="link in navLinks"
           :key="link.label"
           class="nav-item"
-          :class="{ 'has-dropdown': link.hasDropdown, 'active': route.path === link.href }"
+          :class="{ 'has-dropdown': link.hasDropdown, active: route.path === link.href }"
           @click="navigateTo(link.href)"
         >
           <span class="nav-label">{{ link.label }}</span>
@@ -116,6 +126,19 @@ const navigateTo = (path?: string) => {
       <div class="actions">
         <!-- 垂直分割线 (设计稿右侧 Actions 前) -->
         <div class="divider" />
+
+        <a-button
+          type="text"
+          class="btn-theme-toggle"
+          @click="toggleTheme"
+        >
+          <template #icon>
+            <component
+              :is="isDarkMode ? icons.sun : icons.moon"
+              class="icon-theme"
+            />
+          </template>
+        </a-button>
 
         <a-button
           type="text"
@@ -147,9 +170,9 @@ const navigateTo = (path?: string) => {
   justify-content: space-between;
   height: 67px !important;
   padding: 0 24px !important;
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: var(--theme-bg-main, rgba(255, 255, 255, 0.85)) !important;
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--theme-border, #f0f0f0);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
@@ -164,7 +187,7 @@ const navigateTo = (path?: string) => {
   flex: 1;
 
   .logo {
-    color: #198eee;
+    color: var(--theme-primary, #198eee);
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.6px;
@@ -178,7 +201,7 @@ const navigateTo = (path?: string) => {
 
     .search-input {
       height: 38px;
-      background-color: rgba(241, 245, 249, 0.5) !important;
+      background-color: var(--theme-bg-muted, rgba(241, 245, 249, 0.5)) !important;
       border: none !important;
       border-radius: 8px !important;
       padding: 0 12px 0 12px !important;
@@ -186,22 +209,22 @@ const navigateTo = (path?: string) => {
 
       &:hover,
       &:focus-within {
-        background-color: rgba(241, 245, 249, 0.8) !important;
+        background-color: var(--theme-bg-light, rgba(241, 245, 249, 0.8)) !important;
       }
 
       :deep(.ant-input) {
         background: transparent !important;
         font-size: 14px;
-        color: #1e293b;
+        color: var(--theme-text-main, #1e293b);
         &::placeholder {
-          color: rgba(89, 89, 89, 0.4);
+          color: var(--theme-text-muted, rgba(89, 89, 89, 0.4));
         }
       }
 
       .icon-search {
         width: 18px;
         height: 18px;
-        color: #94a3b8;
+        color: var(--theme-text-muted, #94a3b8);
         margin-right: 8px;
       }
     }
@@ -221,11 +244,11 @@ const navigateTo = (path?: string) => {
     min-width: 20px;
     height: 20px;
     padding: 0 4px;
-    background: #ffffff;
-    border: 1px solid #f1f5f9;
+    background: var(--theme-bg-main, #ffffff);
+    border: 1px solid var(--theme-border, #f1f5f9);
     border-radius: 4px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
-    color: #94a3b8;
+    color: var(--theme-text-muted, #94a3b8);
     font-size: 10px;
     font-weight: 600;
     font-family: inherit;
@@ -251,18 +274,18 @@ const navigateTo = (path?: string) => {
       align-items: center;
       gap: 4px;
       cursor: pointer;
-      color: #595959;
+      color: var(--theme-text-secondary, #595959);
       transition: color 0.2s;
       position: relative;
 
       &:hover {
-        color: #198eee;
+        color: var(--theme-primary, #198eee);
       }
 
       &.active {
-        color: #198eee;
+        color: var(--theme-primary, #198eee);
         font-weight: 600;
-        
+
         &::after {
           content: '';
           position: absolute;
@@ -270,7 +293,7 @@ const navigateTo = (path?: string) => {
           left: 0;
           width: 100%;
           height: 2px;
-          background-color: #198eee;
+          background-color: var(--theme-primary, #198eee);
         }
       }
 
@@ -281,7 +304,7 @@ const navigateTo = (path?: string) => {
       .icon-dropdown {
         width: 14px;
         height: 14px;
-        color: #94a3b8;
+        color: var(--theme-text-muted, #94a3b8);
       }
     }
   }
@@ -294,26 +317,28 @@ const navigateTo = (path?: string) => {
     .divider {
       width: 1px;
       height: 24px;
-      background-color: #f1f5f9;
+      background-color: var(--theme-border, #f1f5f9);
       margin-right: 8px;
     }
 
-    .btn-notification {
+    .btn-notification,
+    .btn-theme-toggle {
       width: 38px !important;
       height: 38px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      color: #64748b !important;
+      color: var(--theme-text-muted, #64748b) !important;
       border-radius: 8px !important;
       padding: 0 !important;
 
       &:hover {
-        background-color: #f8fafc !important;
-        color: #198eee !important;
+        background-color: var(--theme-bg-muted, #f8fafc) !important;
+        color: var(--theme-primary, #198eee) !important;
       }
 
-      .icon-bell {
+      .icon-bell,
+      .icon-theme {
         width: 20px;
         height: 20px;
       }
@@ -322,7 +347,7 @@ const navigateTo = (path?: string) => {
     .btn-signin {
       height: 38px !important;
       padding: 0 20px !important;
-      background: #198eee !important;
+      background: var(--theme-primary, #198eee) !important;
       border: none !important;
       border-radius: 8px !important;
       font-size: 14px !important;

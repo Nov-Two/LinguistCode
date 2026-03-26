@@ -6,6 +6,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       getCompareSnapshotsPlugin(on, config);
     },
-    baseUrl: 'http://localhost:5175',
+    baseUrl: 'http://localhost:5174',
   },
 });

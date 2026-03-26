@@ -75,10 +75,10 @@ withDefaults(defineProps<Props>(), {
         >
           <div class="flex flex-col gap-4">
             <div
-              class="inline-block bg-brown-light rounded-xl px-10 py-1 w-max"
+              class="inline-block bg-[var(--theme-brown-light)] rounded-xl px-10 py-1 w-max"
             >
               <span
-                class="text-[#2a1800] font-[family-name:var(--font-public-sans)] text-[10px] font-bold uppercase"
+                class="text-[var(--theme-brown-accent)] font-[family-name:var(--font-public-sans)] text-[10px] font-bold uppercase"
               >Vocabulary First</span>
             </div>
             <a-typography-title

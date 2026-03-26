@@ -27,24 +27,24 @@ const props = withDefaults(defineProps<Props>(), {
       description:
         'Never break your flow to search for a word. Hover over any technical term to see simplified definitions, phonetics, and native translations.',
       icon: LanguageIcon,
-      iconBgClass: 'bg-blue-50',
-      iconColorClass: 'text-blue-500',
+      iconBgClass: 'bg-blue-50 dark:bg-blue-900/20',
+      iconColorClass: 'text-blue-500 dark:text-blue-400',
     },
     {
       title: 'Module Word Cards',
       description:
         "Master the core vocabulary before you dive into the code. Each chapter starts with a curated list of essential terms you'll encounter.",
       icon: RectangleStackIcon,
-      iconBgClass: 'bg-blue-50',
-      iconColorClass: 'text-blue-500',
+      iconBgClass: 'bg-blue-50 dark:bg-blue-900/20',
+      iconColorClass: 'text-blue-500 dark:text-blue-400',
     },
     {
       title: 'Editorial Reading',
       description:
         "Learning code shouldn't feel like reading a manual. Our layout feels like a premium digital magazine, optimized for focus and reading pleasure.",
       icon: BookOpenIcon,
-      iconBgClass: 'bg-orange-50',
-      iconColorClass: 'text-orange-500',
+      iconBgClass: 'bg-orange-50 dark:bg-orange-900/20',
+      iconColorClass: 'text-orange-500 dark:text-orange-400',
     },
   ],
 });
@@ -112,7 +112,9 @@ onUnmounted(() => {
         >
           {{ title }}
         </a-typography-title>
-        <a-typography-paragraph class="!text-gray-600 !text-xl !leading-7 max-w-[800px] mx-auto">
+        <a-typography-paragraph
+          class="!text-[var(--theme-text-secondary)] !text-xl !leading-7 max-w-[800px] mx-auto"
+        >
           {{ subtitle }}
         </a-typography-paragraph>
       </div>
@@ -126,8 +128,8 @@ onUnmounted(() => {
           :class="[
             isVisible ? 'visible' : 'hidden-state',
             activeCardIndex === index
-              ? 'bg-white border-blue-500 shadow-xl -translate-y-2'
-              : 'bg-white border-transparent hover:shadow-lg hover:-translate-y-1 hover:border-blue-200',
+              ? 'bg-[var(--theme-bg-main)] border-[var(--theme-primary)] dark:border-[var(--theme-blue-accent)] shadow-xl -translate-y-2'
+              : 'bg-[var(--theme-bg-main)] border-transparent dark:border-[var(--theme-border)] hover:shadow-lg hover:-translate-y-1 hover:border-[var(--theme-primary)]/30 dark:hover:border-[var(--theme-blue-accent)]/30',
           ]"
           :style="{
             transitionDelay: `${index * 150}ms`,
@@ -148,12 +150,18 @@ onUnmounted(() => {
           <a-typography-title
             :level="3"
             class="!text-xl !font-bold !mb-4 transition-colors"
-            :class="activeCardIndex === index ? '!text-blue-600' : '!text-gray-900'"
+            :class="
+              activeCardIndex === index
+                ? '!text-[var(--theme-primary)] dark:!text-[var(--theme-blue-accent)]'
+                : '!text-[var(--theme-text-main)]'
+            "
           >
             {{ feature.title }}
           </a-typography-title>
 
-          <a-typography-paragraph class="!leading-6 transition-colors !text-gray-600">
+          <a-typography-paragraph
+            class="!leading-6 transition-colors !text-[var(--theme-text-secondary)]"
+          >
             {{ feature.description }}
           </a-typography-paragraph>
 
@@ -162,19 +170,21 @@ onUnmounted(() => {
             v-if="index === 0"
             class="mt-6 space-y-3"
           >
-            <div class="rounded-lg p-3 transition-colors bg-blue-50">
-              <div class="font-semibold text-sm transition-colors text-blue-600">
+            <div class="rounded-lg p-3 transition-colors bg-blue-50 dark:bg-blue-900/20">
+              <div class="font-semibold text-sm transition-colors text-blue-600 dark:text-blue-400">
                 Function
               </div>
-              <div class="text-sm transition-colors text-gray-600">
+              <div class="text-sm transition-colors text-[var(--theme-text-secondary)]">
                 A reusable block of code tasks.
               </div>
             </div>
-            <div class="rounded-lg p-3 transition-colors bg-purple-50">
-              <div class="font-semibold text-sm transition-colors text-purple-600">
+            <div class="rounded-lg p-3 transition-colors bg-purple-50 dark:bg-purple-900/20">
+              <div
+                class="font-semibold text-sm transition-colors text-purple-600 dark:text-purple-400"
+              >
                 Boolean
               </div>
-              <div class="text-sm transition-colors text-gray-600">
+              <div class="text-sm transition-colors text-[var(--theme-text-secondary)]">
                 A simple True or False value.
               </div>
             </div>
@@ -207,10 +217,18 @@ onUnmounted(() => {
             v-if="index === 2"
             class="mt-6"
           >
-            <div class="rounded-lg p-4 space-y-3 transition-colors bg-gray-100">
-              <div class="h-2 rounded transition-colors bg-gray-200" />
-              <div class="h-2 rounded w-3/4 transition-colors bg-gray-200" />
-              <div class="h-2 rounded w-1/2 transition-colors bg-gray-200" />
+            <div
+              class="rounded-lg p-4 space-y-3 transition-colors bg-gray-100 dark:bg-[var(--theme-bg-muted)]"
+            >
+              <div
+                class="h-2 rounded transition-colors bg-gray-200 dark:bg-[var(--theme-border)]"
+              />
+              <div
+                class="h-2 rounded w-3/4 transition-colors bg-gray-200 dark:bg-[var(--theme-border)]"
+              />
+              <div
+                class="h-2 rounded w-1/2 transition-colors bg-gray-200 dark:bg-[var(--theme-border)]"
+              />
             </div>
           </div>
         </div>

@@ -5,17 +5,17 @@ import { ArrowRightIcon, PlayCircleIcon } from '@heroicons/vue/24/outline';
 <template>
   <section class="w-full">
     <div class="mb-8">
-      <h2 class="text-3xl font-bold text-gray-900 mb-2">
+      <h2 class="text-3xl font-bold text-[var(--theme-text-main)] mb-2">
         Recommended Tracks
       </h2>
-      <p class="text-gray-500 text-lg">
+      <p class="text-[var(--theme-text-secondary)] text-lg">
         Curated learning paths designed for your current skill level.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Card 1 -->
-      <div class="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col">
+      <div class="rounded-2xl border border-[var(--theme-border)] overflow-hidden bg-[var(--theme-bg-main)] shadow-sm hover:shadow-md transition-shadow flex flex-col">
         <div class="h-48 bg-slate-800 relative">
           <!-- Placeholder for actual image -->
           <div class="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 opacity-80" />
@@ -41,28 +41,28 @@ import { ArrowRightIcon, PlayCircleIcon } from '@heroicons/vue/24/outline';
         
         <div class="p-6 flex flex-col flex-grow">
           <div class="flex justify-between items-start mb-4">
-            <h3 class="text-xl font-bold text-gray-900">
+            <h3 class="text-xl font-bold text-[var(--theme-text-main)]">
               Web Development for Beginners
             </h3>
-            <span class="bg-blue-50 text-blue-600 text-xs font-bold px-2 py-1 rounded">HTML</span>
+            <span class="bg-[var(--theme-blue-muted)] text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] text-xs font-bold px-2 py-1 rounded">HTML</span>
           </div>
-          <p class="text-gray-600 mb-8 flex-grow">
+          <p class="text-[var(--theme-text-secondary)] mb-8 flex-grow">
             Master the foundations of the web. Learn HTML, CSS, and basic JavaScript in simple, plain English.
           </p>
           
           <div class="mt-auto">
-            <div class="flex justify-between text-sm text-gray-500 font-semibold mb-2">
+            <div class="flex justify-between text-sm text-[var(--theme-text-muted)] font-semibold mb-2">
               <span class="uppercase tracking-wide">Progress</span>
-              <span class="text-blue-600">85%</span>
+              <span class="text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)]">85%</span>
             </div>
-            <div class="w-full bg-gray-100 rounded-full h-2 mb-6">
+            <div class="w-full bg-[var(--theme-border)] rounded-full h-2 mb-6">
               <div
-                class="bg-blue-500 h-2 rounded-full"
+                class="bg-[var(--theme-primary)] dark:bg-[var(--theme-blue-accent)] h-2 rounded-full"
                 style="width: 85%"
               />
             </div>
             
-            <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center transition-colors">
+            <button class="w-full bg-[var(--theme-primary)] hover:bg-[var(--theme-primary-dark)] dark:bg-[var(--theme-blue-accent)] dark:hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center transition-colors">
               Continue Learning
               <ArrowRightIcon class="w-5 h-5 ml-2" />
             </button>
@@ -71,12 +71,12 @@ import { ArrowRightIcon, PlayCircleIcon } from '@heroicons/vue/24/outline';
       </div>
 
       <!-- Card 2 -->
-      <div class="rounded-2xl border border-gray-200 overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow flex flex-col">
+      <div class="rounded-2xl border border-[var(--theme-border)] overflow-hidden bg-[var(--theme-bg-main)] shadow-sm hover:shadow-md transition-shadow flex flex-col">
         <div class="h-48 bg-slate-900 relative">
           <!-- Placeholder for actual image -->
           <div class="absolute inset-0 bg-gradient-to-br from-slate-800 to-black opacity-80" />
           <div class="absolute top-4 left-4">
-            <span class="bg-amber-400 text-amber-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">New Content</span>
+            <span class="bg-[var(--theme-brown-light)] text-[var(--theme-brown-accent)] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">New Content</span>
           </div>
           <div class="absolute inset-0 flex items-center justify-center text-slate-500 opacity-50">
             <svg
@@ -97,34 +97,34 @@ import { ArrowRightIcon, PlayCircleIcon } from '@heroicons/vue/24/outline';
         
         <div class="p-6 flex flex-col flex-grow">
           <div class="flex justify-between items-start mb-4">
-            <h3 class="text-xl font-bold text-gray-900">
+            <h3 class="text-xl font-bold text-[var(--theme-text-main)]">
               Advanced React Architecture
             </h3>
-            <span class="bg-blue-50 text-blue-600 text-xs font-bold px-2 py-1 rounded">JS</span>
+            <span class="bg-[var(--theme-blue-muted)] text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] text-xs font-bold px-2 py-1 rounded">JS</span>
           </div>
-          <p class="text-gray-600 mb-8 flex-grow">
+          <p class="text-[var(--theme-text-secondary)] mb-8 flex-grow">
             Build scalable apps. Understand hooks, context, and state management using technical vocabulary support.
           </p>
           
-          <div class="mt-auto pt-6 flex items-center justify-between border-t border-transparent">
+          <div class="mt-auto pt-6 flex items-center justify-between border-t border-[var(--theme-border)]">
             <div class="flex items-center">
               <div class="flex -space-x-2">
-                <div class="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 z-30">
+                <div class="w-8 h-8 rounded-full bg-[var(--theme-bg-muted)] border-2 border-[var(--theme-bg-main)] flex items-center justify-center text-xs font-medium text-[var(--theme-text-secondary)] z-30">
                   A
                 </div>
-                <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 z-20">
+                <div class="w-8 h-8 rounded-full bg-[var(--theme-bg-muted)] border-2 border-[var(--theme-bg-main)] flex items-center justify-center text-xs font-medium text-[var(--theme-text-secondary)] z-20">
                   B
                 </div>
-                <div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600 z-10">
+                <div class="w-8 h-8 rounded-full bg-[var(--theme-bg-muted)] border-2 border-[var(--theme-bg-main)] flex items-center justify-center text-xs font-medium text-[var(--theme-text-secondary)] z-10">
                   C
                 </div>
               </div>
-              <span class="text-xs text-gray-500 font-semibold ml-3 uppercase tracking-wide">+1.2k students enrolled</span>
+              <span class="text-xs text-[var(--theme-text-muted)] font-semibold ml-3 uppercase tracking-wide">+1.2k students enrolled</span>
             </div>
             
-            <button class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-900 font-semibold py-2 px-6 rounded-lg flex items-center transition-colors">
+            <button class="bg-[var(--theme-bg-main)] border border-[var(--theme-border)] hover:bg-[var(--theme-bg-muted)] text-[var(--theme-text-main)] font-semibold py-2 px-6 rounded-lg flex items-center transition-colors">
               Start Track
-              <PlayCircleIcon class="w-5 h-5 ml-2 text-gray-500" />
+              <PlayCircleIcon class="w-5 h-5 ml-2 text-[var(--theme-text-muted)]" />
             </button>
           </div>
         </div>

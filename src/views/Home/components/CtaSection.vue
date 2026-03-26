@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="w-full flex justify-center bg-#f7f9fa">
+  <div class="w-full flex justify-center bg-bg-light transition-colors duration-300">
     <a-card
       :bordered="false"
       class="relative flex flex-col items-center w-[calc(100%-48px)] max-w-[800px] -mt-16 mx-auto rounded-3xl overflow-hidden text-center z-10 !p-12 md:!p-16"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from 'vue';
 import type { HeroVisualProps, ContentData } from './types';
-import { Popover, Spin, Result, Button } from 'ant-design-vue';
+import { Popover, Result, Button } from 'ant-design-vue';
 
 const props = withDefaults(defineProps<HeroVisualProps>(), {
   transitionDuration: 300,
@@ -80,18 +80,18 @@ watch(
 <template>
   <!-- eslint-disable vue/no-v-html -->
   <div
-    class="hero-visual-wrapper w-full max-w-[1024px] mx-auto bg-white rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col md:flex-row min-h-[600px] font-sans border border-gray-100"
+    class="hero-visual-wrapper w-full max-w-[1024px] mx-auto bg-[var(--theme-bg-main)] rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col md:flex-row min-h-[600px] font-sans border border-[var(--theme-border)]"
   >
-    <!-- Sidebar -->
+    <!-- Left Sidebar - Menu -->
     <div
-      class="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-gray-100 flex flex-col shrink-0"
+      class="w-full md:w-64 bg-[var(--theme-bg-main)] border-b md:border-b-0 md:border-r border-[var(--theme-border)] flex flex-col shrink-0"
     >
       <!-- Header -->
       <div class="pt-8 pb-4 px-6 text-left">
-        <p class="text-[10px] font-bold tracking-[0.15em] text-gray-400 uppercase mb-2 font-inter">
+        <p class="text-[10px] font-bold tracking-[0.15em] text-[var(--theme-text-muted)] uppercase mb-2 font-inter">
           {{ moduleSubtitle }}
         </p>
-        <h3 class="text-base font-bold text-gray-900 font-space-grotesk">
+        <h3 class="text-base font-bold text-[var(--theme-text-main)] font-space-grotesk">
           {{ moduleTitle }}
         </h3>
       </div>
@@ -101,37 +101,43 @@ watch(
         <button
           v-for="item in navItems"
           :key="item.id"
-          class="flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-medium transition-all duration-300 relative text-left outline-none focus:ring-2 focus:ring-[#2563EB]/50"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-medium transition-all duration-300 relative text-left outline-none focus:ring-2 focus:ring-[var(--theme-primary)]/50"
           :class="
             activeId === item.id
-              ? 'bg-[#F0F5FF] text-[#2563EB]'
-              : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+              ? 'bg-[var(--theme-blue-muted)] text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] shadow-sm dark:shadow-none'
+              : 'text-[var(--theme-text-secondary)] hover:bg-[var(--theme-bg-muted)] hover:text-[var(--theme-text-main)] dark:hover:bg-white/5'
           "
           @click="handleSelect(item.id)"
         >
           <div
             v-if="activeId === item.id"
-            class="absolute right-0 top-1/2 -translate-y-1/2 w-[3px] h-8 bg-[#2563EB] rounded-l-full"
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-[3px] h-8 bg-[var(--theme-primary)] dark:bg-[var(--theme-blue-accent)] rounded-l-full"
           />
           <component
             :is="item.icon"
             v-if="item.icon"
             class="w-5 h-5 shrink-0"
-            :class="activeId === item.id ? 'text-[#2563EB]' : 'text-gray-400'"
+            :class="
+              activeId === item.id
+                ? 'text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)]'
+                : 'text-[var(--theme-text-muted)]'
+            "
           />
-          <span class="truncate">{{ item.title }}</span>
+          {{ item.title }}
         </button>
       </nav>
 
       <!-- Progress -->
       <div class="p-6 mt-auto">
-        <div class="bg-[#F8FAFC] rounded-2xl p-4 border border-gray-100">
+        <div
+          class="bg-[var(--theme-bg-light)] dark:bg-[var(--theme-bg-main)] rounded-2xl p-4 border border-[var(--theme-border)] shadow-sm dark:shadow-none"
+        >
           <div class="flex justify-between items-center mb-3">
-            <span class="text-[12px] font-semibold text-gray-600 font-inter">Progress: {{ progress }}%</span>
+            <span class="text-[12px] font-semibold text-[var(--theme-text-secondary)] font-inter">Progress: {{ progress }}%</span>
           </div>
-          <div class="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+          <div class="h-1.5 w-full bg-[var(--theme-border)] rounded-full overflow-hidden">
             <div
-              class="h-full bg-[#2563EB] rounded-full transition-all duration-1000 ease-out"
+              class="h-full bg-[var(--theme-primary)] dark:bg-[var(--theme-blue-accent)] rounded-full transition-all duration-1000 ease-out"
               :style="{ width: `${progress}%` }"
             />
           </div>
@@ -140,7 +146,7 @@ watch(
     </div>
 
     <!-- Content Area -->
-    <div class="flex-1 bg-white relative overflow-hidden flex flex-col p-8 md:p-12">
+    <div class="flex-1 bg-[var(--theme-bg-main)] relative overflow-hidden flex flex-col p-8 md:p-12">
       <transition
         name="content-fade"
         mode="out-in"
@@ -149,10 +155,13 @@ watch(
         <!-- Loading State -->
         <div
           v-if="isLoading"
-          class="absolute inset-0 flex flex-col items-center justify-center bg-white z-20"
+          class="absolute inset-0 flex flex-col items-center justify-center bg-[var(--theme-bg-main)] z-20"
         >
-          <Spin size="large" />
-          <p class="mt-4 text-gray-500 font-medium font-inter">
+          <!-- Skeleton loaders or spinner could go here -->
+          <div
+            class="w-10 h-10 border-4 border-[var(--theme-primary)]/20 border-t-[var(--theme-primary)] dark:border-[var(--theme-blue-accent)]/20 dark:border-t-[var(--theme-blue-accent)] rounded-full animate-spin"
+          />
+          <p class="mt-4 text-[var(--theme-text-muted)] font-medium font-inter">
             Loading content...
           </p>
         </div>
@@ -160,7 +169,7 @@ watch(
         <!-- Error State -->
         <div
           v-else-if="error"
-          class="absolute inset-0 flex items-center justify-center bg-white z-20"
+          class="absolute inset-0 flex items-center justify-center bg-[var(--theme-bg-main)] z-20"
         >
           <Result
             status="error"
@@ -184,12 +193,12 @@ watch(
           :key="currentContent.title"
           class="w-full max-w-2xl mx-auto flex flex-col h-full text-center items-center justify-center"
         >
-          <h2 class="text-3xl font-bold text-gray-900 font-space-grotesk mb-6">
+          <h2 class="text-3xl font-bold text-[var(--theme-text-main)] font-space-grotesk mb-6">
             {{ currentContent.title }}
           </h2>
 
           <div
-            class="text-gray-600 text-[16px] leading-relaxed mb-10 max-w-[500px] font-public-sans"
+            class="text-[var(--theme-text-secondary)] text-[16px] leading-relaxed mb-10 max-w-[500px] font-public-sans"
           >
             <template v-if="currentContent.descriptionHtml">
               <div v-html="currentContent.descriptionHtml" />
@@ -203,19 +212,21 @@ watch(
                 <template #content>
                   <div class="p-3 w-64">
                     <div class="flex justify-between items-center mb-2">
-                      <span class="text-[#2563EB] font-bold font-space-grotesk text-base">{{
-                        currentContent.tooltipTitle
-                      }}</span>
                       <span
-                        class="bg-[#FEF3C7] text-[#92400E] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"
+                        class="text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] font-bold font-space-grotesk text-base"
+                      >{{ currentContent.tooltipTitle }}</span>
+                      <span
+                        class="bg-[var(--theme-brown-light)] text-[var(--theme-brown-accent)] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"
                       >{{ currentContent.tooltipTag }}</span>
                     </div>
-                    <p class="text-sm text-gray-700 m-0 leading-relaxed">
+                    <p class="text-sm text-[var(--theme-text-secondary)] m-0 leading-relaxed">
                       {{ currentContent.tooltipDescription }}
                     </p>
                   </div>
                 </template>
-                <span class="text-[#2563EB] font-bold cursor-pointer border-b-2 border-dashed border-[#2563EB]/40 pb-[1px] hover:border-[#2563EB] transition-colors tooltip-pulse-animate">
+                <span
+                  class="text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] font-bold cursor-pointer border-b-2 border-dashed border-[var(--theme-primary)]/40 dark:border-[var(--theme-blue-accent)]/40 pb-[1px] hover:border-[var(--theme-primary)] dark:hover:border-[var(--theme-blue-accent)] transition-colors tooltip-pulse-animate"
+                >
                   {{ currentContent.tooltipWord }}
                 </span>
               </Popover>
@@ -290,11 +301,11 @@ watch(
           <!-- Preview Block -->
           <div
             v-if="currentContent.previewOutput"
-            class="w-full bg-[#ECFDF5] border border-[#A7F3D0] rounded-xl p-4 flex items-center justify-between transition-all duration-300"
+            class="w-full bg-[var(--theme-green-muted)] border border-[var(--theme-green-border)] rounded-xl p-4 flex items-center justify-between transition-all duration-300 shadow-sm dark:shadow-none"
           >
             <div class="flex items-center gap-2">
               <svg
-                class="w-5 h-5 text-[#059669]"
+                class="w-5 h-5 text-[var(--theme-green-text)]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -306,9 +317,9 @@ watch(
                   d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span class="text-[#059669] font-semibold text-sm">Preview: Output</span>
+              <span class="text-[var(--theme-green-text)] font-semibold text-sm">Preview: Output</span>
             </div>
-            <span class="font-mono text-[#059669] font-medium text-sm">{{
+            <span class="font-mono text-[var(--theme-green-text)] font-medium text-sm">{{
               currentContent.previewOutput
             }}</span>
           </div>
@@ -350,10 +361,17 @@ watch(
 
 :deep(.custom-tooltip .ant-popover-inner) {
   border-radius: 12px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
   padding: 0;
   overflow: hidden;
-  border: 1px solid #f3f4f6;
+  background-color: var(--theme-bg-main);
+  border: 1px solid var(--theme-border);
+}
+
+:deep(.custom-tooltip .ant-popover-arrow) {
+  display: none;
 }
 
 .tooltip-pulse-animate {

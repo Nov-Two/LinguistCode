@@ -30,9 +30,15 @@ const navigateToCurriculum = () => {
 <template>
   <div class="w-full flex flex-col items-center w-full px-6 pt-24 pb-16">
     <div class="mb-8">
-      <div class="inline-flex items-center bg-blue-50 rounded-full px-4 py-2">
-        <div class="w-2 h-2 bg-blue-600 rounded-full mr-2" />
-        <span class="text-blue-600 text-sm font-medium">{{ badgeText }}</span>
+      <div
+        class="inline-flex items-center bg-[var(--theme-blue-accent)]/10 rounded-full px-4 py-2 border border-[var(--theme-blue-accent)]/20"
+      >
+        <div
+          class="w-2 h-2 bg-[var(--theme-primary)] dark:bg-[var(--theme-blue-accent)] rounded-full mr-2"
+        />
+        <span
+          class="text-[var(--theme-primary)] dark:text-[var(--theme-blue-accent)] text-sm font-medium"
+        >{{ badgeText }}</span>
       </div>
     </div>
 
@@ -45,7 +51,7 @@ const navigateToCurriculum = () => {
           :level="1"
           class="!text-[56px] md:!text-[72px] !leading-[64px] md:!leading-[80px] !font-bold text-center !mb-6 font-bold max-w-[800px]"
         >
-          <span class="text-gray-900">{{ titleStart }}&nbsp;</span>
+          <span class="text-[var(--theme-text-main)]">{{ titleStart }}&nbsp;</span>
           <span class="text-glow-animate">{{ titleHighlight }}</span>
         </a-typography-title>
       </transition>
@@ -58,7 +64,7 @@ const navigateToCurriculum = () => {
           name="fade-slide-up-2"
         >
           <a-typography-paragraph
-            class="!text-gray-600 !text-xl !leading-7 text-center whitespace-pre-line"
+            class="!text-[var(--theme-text-secondary)] !text-xl !leading-7 text-center whitespace-pre-line"
           >
             {{ description }}
           </a-typography-paragraph>
@@ -72,19 +78,19 @@ const navigateToCurriculum = () => {
         name="fade-slide-up-3"
       >
         <a-space
-          size="large"
+          :size="20"
           class="mb-16 flex-col md:flex-row w-full md:w-auto justify-center"
         >
           <a-button
             type="primary"
             size="large"
-            class="!h-[56px] !px-8 !rounded-lg !bg-blue-600 !border-blue-600 !shadow-lg btn-shimmer"
+            class="!h-[56px] !px-8 !rounded-lg !bg-[var(--theme-primary)] dark:!bg-[var(--theme-blue-accent)] !border-none !shadow-lg btn-shimmer"
           >
             <span class="text-white text-base font-semibold">{{ primaryButtonText }}</span>
           </a-button>
           <a-button
             size="large"
-            class="!h-[56px] !px-8 !rounded-lg !border-gray-400 !text-blue-600 hover:!bg-gray-50"
+            class="!h-[56px] !px-8 !rounded-lg !border-[var(--theme-border)] !text-[var(--theme-primary)] dark:!text-[var(--theme-blue-accent)] hover:!bg-[var(--theme-bg-muted)] dark:hover:!bg-white/5"
             @click="navigateToCurriculum"
           >
             <span class="text-base font-semibold">{{ secondaryButtonText }}</span>
