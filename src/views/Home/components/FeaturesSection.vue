@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VocabularyFeatures from '@/components/home/VocabularyFeatures.vue';
-import ReadingFeatures from '@/components/home/ReadingFeatures.vue';
+import VocabularyFeatures from './VocabularyFeatures.vue';
+import ReadingFeatures from './ReadingFeatures.vue';
 </script>
 
 <template>

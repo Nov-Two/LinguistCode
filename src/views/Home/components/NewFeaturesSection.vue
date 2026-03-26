@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, shallowRef } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import type { Component } from 'vue';
 import { LanguageIcon, RectangleStackIcon, BookOpenIcon } from '@heroicons/vue/24/outline';
 
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
       title: 'Smart Word Tooltips',
       description:
         'Never break your flow to search for a word. Hover over any technical term to see simplified definitions, phonetics, and native translations.',
-      icon: shallowRef(LanguageIcon),
+      icon: LanguageIcon,
       iconBgClass: 'bg-blue-50',
       iconColorClass: 'text-blue-500',
     },
@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<Props>(), {
       title: 'Module Word Cards',
       description:
         "Master the core vocabulary before you dive into the code. Each chapter starts with a curated list of essential terms you'll encounter.",
-      icon: shallowRef(RectangleStackIcon),
+      icon: RectangleStackIcon,
       iconBgClass: 'bg-blue-50',
       iconColorClass: 'text-blue-500',
     },
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
       title: 'Editorial Reading',
       description:
         "Learning code shouldn't feel like reading a manual. Our layout feels like a premium digital magazine, optimized for focus and reading pleasure.",
-      icon: shallowRef(BookOpenIcon),
+      icon: BookOpenIcon,
       iconBgClass: 'bg-orange-50',
       iconColorClass: 'text-orange-500',
     },
@@ -140,7 +140,7 @@ onUnmounted(() => {
             :class="[feature.iconBgClass, feature.iconColorClass]"
           >
             <component
-              :is="feature.icon.value || feature.icon"
+              :is="feature.icon"
               class="w-7 h-7"
             />
           </div>

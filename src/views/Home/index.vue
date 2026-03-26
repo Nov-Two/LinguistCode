@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import HeroHeader from '@/components/home/HeroHeader.vue';
-import HeroVisual from '@/components/HeroVisual/index.vue';
-import NewFeaturesSection from '@/components/home/NewFeaturesSection.vue';
-import NewCtaSection from '@/components/home/NewCtaSection.vue';
+import HeroHeader from './components/HeroHeader.vue';
+import HeroVisual from './components/HeroVisual/index.vue';
+import NewFeaturesSection from './components/NewFeaturesSection.vue';
+import NewCtaSection from './components/NewCtaSection.vue';
 import { DocumentTextIcon, CodeBracketIcon, PlayIcon } from '@heroicons/vue/24/outline';
-import type { NavItem, ContentData } from '@/components/HeroVisual/types';
+import type { NavItem, ContentData } from './components/HeroVisual/types';
 
 const navItems: NavItem[] = [
   { id: 'vars', title: 'What is a Variable?', icon: DocumentTextIcon },

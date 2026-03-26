@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FooterLogo from './footer/FooterLogo.vue';
-import FooterColumn from './footer/FooterColumn.vue';
-import FooterBottom from './footer/FooterBottom.vue';
+import FooterLogo from './components/FooterLogo.vue';
+import FooterColumn from './components/FooterColumn.vue';
+import FooterBottom from './components/FooterBottom.vue';
 
 interface FooterLink {
   label: string;

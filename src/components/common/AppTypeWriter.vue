@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // use
-// import TypeWriter from '@/components/TypeWriter.vue';
-// <TypeWriter ref="glitchRef" :text="description" :typingInterval="60" />
+// import AppTypeWriter from '@/components/common/AppTypeWriter.vue';
+// <AppTypeWriter ref="glitchRef" :text="description" :typingInterval="60" />
 
 import { ref, onMounted, computed, onUnmounted } from 'vue';
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import RecommendedTracks from '@/components/curriculum/RecommendedTracks.vue';
-import ExploreCourses from '@/components/curriculum/ExploreCourses.vue';
+import RecommendedTracks from './components/RecommendedTracks.vue';
+import ExploreCourses from './components/ExploreCourses.vue';
 import { Alert, Spin } from 'ant-design-vue';
 
 const loading = ref(true);
